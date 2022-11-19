@@ -12,7 +12,9 @@
         "install:host": "cd ./host && pnpm install",
         "install:api_gw": "cd ./api_gw && pnpm install",
         "install": "concurrently --kill-others \"npm run install:board\" \"npm run install:host\" \"npm run install:api_gw\"",
-        "first_deploy": "npm install -g pnpm && pnpm i concurrently -D",
+        "first_deploy:pnpm": "npm i -g pnpm && pnpm i concurrently -D",
+        "first_deploy:npm": "npm i concurrently -D",
+        "first_deploy:yarn": "npm i -g yarn && yarn install concurrently -D",
         "copy:tailwind": "npm run copy:tailwind:board && npm run copy:tailwind:host",
         "copy:tailwind:board": "cp ./tailwind.config.js ./board",
         "copy:tailwind:host": "cp ./tailwind.config.js ./host",
@@ -20,13 +22,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nivb52/dnd-microfrontend.git"
+        "url": "git+https://github.com/nivb52/mfe-dnd-react.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/nivb52/dnd-microfrontend/issues"
+        "url": "https://github.com/nivb52/mfe-dnd-react/issues"
     },
-    "homepage": "https://github.com/nivb52/dnd-microfrontend#readme"
+    "homepage": "https://github.com/nivb52/mfe-dnd-react#readme"
 }
