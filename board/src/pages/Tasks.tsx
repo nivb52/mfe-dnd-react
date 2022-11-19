@@ -5,32 +5,31 @@ import {
   Droppable,
   type DropResult,
 } from 'react-beautiful-dnd';
-import { v4 as uuid } from 'uuid';
 import toast from 'react-hot-toast';
 import type {
-  Task as Itask,
-  Column as Icolumn,
-  Board as Iboard,
+  Task as ITask,
+  Column as IColumn,
+  Board as IBoard,
 } from './Tasks/Model';
 import { getTasks, updateTasks } from './Tasks/crudApi';
 import { changeTaskStatus } from './Tasks/changeStatusByDrag';
 
 const defaultBoard = {
-  [uuid()]: {
+  todo: {
     name: 'To do',
-    items: [] as Itask[],
+    items: [] as ITask[],
   },
-  [uuid()]: {
+  inProgress: {
     name: 'In Progress',
-    items: [] as Itask[],
+    items: [] as ITask[],
   },
-  [uuid()]: {
+  done: {
     name: 'Done',
-    items: [] as Itask[],
+    items: [] as ITask[],
   },
-} as unknown as Iboard;
+} as unknown as IBoard;
 
-function renderDraggableTasks(items: Itask[]) {
+function renderDraggableTasks(items: ITask[]) {
   return items.map((item, index) => {
     return (
       <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -85,13 +84,13 @@ function Tasks() {
     const onError = (error: Error) => {
       toast.error('Something went wrong');
     };
-    const onSuccess = (data: Iboard) => {
+    const onSuccess = (data: IBoard) => {
       setTasks(data);
     };
     getTasks(onSuccess, onError);
   }, []);
 
-  const invokeUpdateTasks = (data: Iboard) => {
+  const invokeUpdateTasks = (data: IBoard) => {
     const onSuccess = (res) => {
       toast.success('Saved');
     };
@@ -113,7 +112,7 @@ function Tasks() {
       <DragDropContext onDragEnd={onDragEnd} onBeforeCapture={onBeforeCapture}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           {Object.entries(tasks).map(
-            ([columnId, column]: [string, Icolumn], index) => {
+            ([columnId, column]: [string, IColumn], index) => {
               return (
                 <div className="col-auto h-[580px]" key={columnId}>
                   <div className="pb-2.5 w-full flex justify-between">
