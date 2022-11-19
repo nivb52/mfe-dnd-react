@@ -1,6 +1,10 @@
 module.exports = {
   microeFrontends: {
-    /**@note: if you change the port and want to use the ```npm run build:start``` you may also need to change the port in the package.json */
+    /**@note: if you change the port and want to use the
+     * npm run build:start
+     * you may also need to change the port in the package.json
+     * especially the server (api_gw)
+     */
     board: {
       port: 8080,
     },
